@@ -1,0 +1,9 @@
+acepoi@Ubuntu22:~$ echo -n > hello.txt
+acepoi@Ubuntu22:~$ echo "Hello World!" >> hello.txt
+acepoi@Ubuntu22:~$ cat hello.txt
+Hello World!
+acepoi@Ubuntu22:~$ grep "Hello" hello.txt
+Hello World!
+acepoi@Ubuntu22:~$ sed -i 's/Hello/Hi/' hello.txt
+acepoi@Ubuntu22:~$ cat hello.txt
+Hi World!
