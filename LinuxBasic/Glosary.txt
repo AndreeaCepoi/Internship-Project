@@ -1,0 +1,71 @@
+ls  - Listează conținutul unui director
+	-r - Listează toate fișierele din subdirectoare
+	-a - Arată toate fișierele, inclusiv cele ascunse
+
+pwd - Afișează calea directorului de lucru curent 
+
+cd - Schimbă directorul de lucru 
+	-cd .. -  Înapoi
+	. - Directorul curent
+
+su – Schimba userul ( by default la root )
+
+sudo - Rulează o comandă ca root
+
+cat – Afiseaza ce se afla într-un fisier
+	cat > filen.txt – creează un fișier nou
+
+rm - Şterge un fişier 
+rm -rf
+	-f – permite eliminarea fișierelor fără o confirmare 
+	-r – șterge fișierele și directoarele în mod recursiv
+
+mkdir - Creează un director nou 
+
+nano - Editează un fișier cu un editor de text nano
+
+man - Afișează un manual de comandă 
+
+chmod - Modifică permisiunile de citire, scriere și execuție ale unui fișier 
+
+chown - Schimbă proprietatea unui fișier, director
+
+ps – Afiseaza procesele care ruleaza
+
+grep - Caută un șir într-un fișier 
+
+cp - Copiază fișierele și directoarele, inclusiv conținutul acestora 
+
+mv - Mută sau redenumește fișierele și directoarele
+ 
+touch - Creează un nou fișier gol 
+
+file - Verifică tipul unui fișier 
+
+useradd și userdel - Creează și elimină un cont de utilizator 
+
+systemctl - Gestionează serviciile de sistem 
+
+kill - Încheie un proces care rulează 
+	kill -9 PID - forteaza inchiderea unui proces 
+	PID - ID-ul procesului
+
+wget - Descarcă fișiere de la o adresă URL 
+
+ifconfig - Afișează interfețele de rețea ale sistemului și configurațiile acestora 
+
+echo - Imprimă un mesaj ca ieşire standard 
+
+alias și unalias - Setează și elimină un alias pentru un fișier sau o comandă 
+
+clear – Curta terminalul
+
+# -root
+
+$ - user
+
+sudo adduser – Adauga un user nou
+
+groups – Afiseaza grupurile din care faci parte
+
+sudo apt install – Instaleaza un pachet specific pe sistem 
