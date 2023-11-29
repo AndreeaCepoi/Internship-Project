@@ -1,0 +1,36 @@
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rw-rw-r-- 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod 644 hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rw-r--r-- 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod 466 hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-r--rw-rw- 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod 666 hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rw-rw-rw- 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod 775 hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rwxrwxr-x 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod 647 hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rw-r--rwx 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod 444 hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-r--r--r-- 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod u+w hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rw-r--r-- 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod +x hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rwxr-xr-x 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod o+w hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rwxr-xrwx 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod g-r hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rwx--xrwx 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+acepoi@Ubuntu22:~$ chmod o-rx hello.txt
+acepoi@Ubuntu22:~$ ls -l hello.txt
+-rwx--x-w- 1 acepoi acepoi 10 nov 28 13:05 hello.txt
+
