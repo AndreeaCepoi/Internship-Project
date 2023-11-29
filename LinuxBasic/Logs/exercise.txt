@@ -1,0 +1,536 @@
+cepoi@Ubuntu22:~$ cd Downloads
+acepoi@Ubuntu22:~/Downloads$ ls
+linux-exercise.tar.gz  
+acepoi@Ubuntu22:~/Downloads$ tar xzvf linux-exercise.tar.gz
+linux-exercises/
+linux-exercises/dimer_scan.log
+linux-exercises/freq.log
+linux-exercises/cp2k.xyz
+linux-exercises/cp2k.out
+linux-exercises/dimer.log
+acepoi@Ubuntu22:~/Downloads$ ls       
+linux-exercises  linux-exercise.tar.gz  
+acepoi@Ubuntu22:~/Downloads$ cd linux-exercises
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ ls
+cp2k.out  cp2k.xyz  dimer.log  dimer_scan.log  freq.log
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ more cp2k.out
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ nano cp2k.out 
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ more dimer.log
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ nano dimer.log
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep "SCF Done:" dimer.log
+ SCF Done:  E(RPBE-PBE) =  -152.637052486     A.U. after   12 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.649944913     A.U. after   11 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.654913859     A.U. after   12 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.656483798     A.U. after   11 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.657152494     A.U. after   11 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.657682699     A.U. after   11 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.658087670     A.U. after   12 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.658642047     A.U. after   12 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.659440588     A.U. after   12 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.660069288     A.U. after   12 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.660165007     A.U. after   10 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.660185016     A.U. after   10 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.660221654     A.U. after   11 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.660243827     A.U. after   10 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.660246491     A.U. after    8 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.660246751     A.U. after    7 cycles
+ SCF Done:  E(RPBE-PBE) =  -152.660246843     A.U. after    6 cycles
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep warning cp2k.out
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep -i warning cp2k.out
+ *** 09:15:35 WARNING in qs_initial_guess:calculate_first_density_matrix ***
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep "Maximum Force" dimer.log
+ Maximum Force            0.057661     0.000450     NO 
+ Maximum Force            0.023218     0.000450     NO 
+ Maximum Force            0.010337     0.000450     NO 
+ Maximum Force            0.006429     0.000450     NO 
+ Maximum Force            0.002624     0.000450     NO 
+ Maximum Force            0.003480     0.000450     NO 
+ Maximum Force            0.003740     0.000450     NO 
+ Maximum Force            0.005036     0.000450     NO 
+ Maximum Force            0.005406     0.000450     NO 
+ Maximum Force            0.002917     0.000450     NO 
+ Maximum Force            0.001048     0.000450     NO 
+ Maximum Force            0.001021     0.000450     NO 
+ Maximum Force            0.001210     0.000450     NO 
+ Maximum Force            0.000533     0.000450     NO 
+ Maximum Force            0.000123     0.000450     YES
+ Maximum Force            0.000042     0.000450     YES
+ Maximum Force            0.000033     0.000450     YES
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep "m Forc" dimer.log
+ Maximum Force            0.057661     0.000450     NO 
+ Maximum Force            0.023218     0.000450     NO 
+ Maximum Force            0.010337     0.000450     NO 
+ Maximum Force            0.006429     0.000450     NO 
+ Maximum Force            0.002624     0.000450     NO 
+ Maximum Force            0.003480     0.000450     NO 
+ Maximum Force            0.003740     0.000450     NO 
+ Maximum Force            0.005036     0.000450     NO 
+ Maximum Force            0.005406     0.000450     NO 
+ Maximum Force            0.002917     0.000450     NO 
+ Maximum Force            0.001048     0.000450     NO 
+ Maximum Force            0.001021     0.000450     NO 
+ Maximum Force            0.001210     0.000450     NO 
+ Maximum Force            0.000533     0.000450     NO 
+ Maximum Force            0.000123     0.000450     YES
+ Maximum Force            0.000042     0.000450     YES
+ Maximum Force            0.000033     0.000450     YES
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep " Force" dimer.log
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.052528044 RMS     0.016650655
+ Internal  Forces:  Max     0.057661487 RMS     0.022508193
+ RMS Force = .22508D-01 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.057661     0.000450     NO 
+ RMS     Force            0.022508     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.021873468 RMS     0.007419602
+ Internal  Forces:  Max     0.023218374 RMS     0.006661627
+ RMS Force = .66616D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.023218     0.000450     NO 
+ RMS     Force            0.006662     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.018473188 RMS     0.005726133
+ Internal  Forces:  Max     0.010336832 RMS     0.003856936
+ RMS Force = .38569D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.010337     0.000450     NO 
+ RMS     Force            0.003857     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.009168159 RMS     0.003542658
+ Internal  Forces:  Max     0.006428579 RMS     0.002401234
+ RMS Force = .24012D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.006429     0.000450     NO 
+ RMS     Force            0.002401     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.004682039 RMS     0.001720967
+ Internal  Forces:  Max     0.002624125 RMS     0.001338755
+ RMS Force = .13388D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.002624     0.000450     NO 
+ RMS     Force            0.001339     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.004156726 RMS     0.001705614
+ Internal  Forces:  Max     0.003479694 RMS     0.001534893
+ RMS Force = .15349D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.003480     0.000450     NO 
+ RMS     Force            0.001535     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.005840255 RMS     0.002205550
+ Internal  Forces:  Max     0.003740333 RMS     0.001958187
+ RMS Force = .19582D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.003740     0.000450     NO 
+ RMS     Force            0.001958     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.005150980 RMS     0.002393562
+ Internal  Forces:  Max     0.005036113 RMS     0.002355206
+ RMS Force = .23552D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.005036     0.000450     NO 
+ RMS     Force            0.002355     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.004050320 RMS     0.002159038
+ Internal  Forces:  Max     0.005406134 RMS     0.002165707
+ RMS Force = .21657D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.005406     0.000450     NO 
+ RMS     Force            0.002166     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.004020124 RMS     0.001402666
+ Internal  Forces:  Max     0.002916874 RMS     0.001182496
+ RMS Force = .11825D-02 SwitMx=.10000D-02 MixMth= 1
+ Maximum Force            0.002917     0.000450     NO 
+ RMS     Force            0.001182     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.001050067 RMS     0.000506503
+ Internal  Forces:  Max     0.001047974 RMS     0.000553119
+ RMS Force = .55312D-03 SwitMx=.10000D-02 MixMth= 2
+ Maximum Force            0.001048     0.000450     NO 
+ RMS     Force            0.000553     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.000822505 RMS     0.000350171
+ Internal  Forces:  Max     0.001021199 RMS     0.000370430
+ RMS Force = .37043D-03 SwitMx=.10000D-02 MixMth= 2
+ Maximum Force            0.001021     0.000450     NO 
+ RMS     Force            0.000370     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.001594565 RMS     0.000587390
+ Internal  Forces:  Max     0.001209793 RMS     0.000497861
+ RMS Force = .49786D-03 SwitMx=.10000D-02 MixMth= 2
+ Maximum Force            0.001210     0.000450     NO 
+ RMS     Force            0.000498     0.000300     NO 
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.000960632 RMS     0.000298950
+ Internal  Forces:  Max     0.000533418 RMS     0.000221928
+ RMS Force = .22193D-03 SwitMx=.10000D-02 MixMth= 2
+ Maximum Force            0.000533     0.000450     NO 
+ RMS     Force            0.000222     0.000300     YES
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.000246178 RMS     0.000084919
+ Internal  Forces:  Max     0.000122775 RMS     0.000066226
+ RMS Force = .66226D-04 SwitMx=.10000D-02 MixMth= 2
+ Maximum Force            0.000123     0.000450     YES
+ RMS     Force            0.000066     0.000300     YES
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.000050666 RMS     0.000022651
+ Internal  Forces:  Max     0.000041756 RMS     0.000016543
+ RMS Force = .16543D-04 SwitMx=.10000D-02 MixMth= 2
+ Maximum Force            0.000042     0.000450     YES
+ RMS     Force            0.000017     0.000300     YES
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Cartesian Forces:  Max     0.000052548 RMS     0.000019139
+ Internal  Forces:  Max     0.000032921 RMS     0.000013794
+ RMS Force = .13794D-04 SwitMx=.10000D-02 MixMth= 2
+ Maximum Force            0.000033     0.000450     YES
+ RMS     Force            0.000014     0.000300     YES
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep " Displa" dimer.log
+ Maximum Displacement     0.218107     0.001800     NO 
+ RMS     Displacement     0.108003     0.001200     NO 
+ Maximum Displacement     0.328915     0.001800     NO 
+ RMS     Displacement     0.156239     0.001200     NO 
+ Maximum Displacement     0.156513     0.001800     NO 
+ RMS     Displacement     0.095361     0.001200     NO 
+ Maximum Displacement     0.178826     0.001800     NO 
+ RMS     Displacement     0.075157     0.001200     NO 
+ Maximum Displacement     0.269534     0.001800     NO 
+ RMS     Displacement     0.115583     0.001200     NO 
+ Maximum Displacement     0.237828     0.001800     NO 
+ RMS     Displacement     0.112887     0.001200     NO 
+ Maximum Displacement     0.288583     0.001800     NO 
+ RMS     Displacement     0.144836     0.001200     NO 
+ Maximum Displacement     0.274271     0.001800     NO 
+ RMS     Displacement     0.156026     0.001200     NO 
+ Maximum Displacement     0.261413     0.001800     NO 
+ RMS     Displacement     0.128936     0.001200     NO 
+ Maximum Displacement     0.055137     0.001800     NO 
+ RMS     Displacement     0.023976     0.001200     NO 
+ Maximum Displacement     0.032357     0.001800     NO 
+ RMS     Displacement     0.014542     0.001200     NO 
+ Maximum Displacement     0.071028     0.001800     NO 
+ RMS     Displacement     0.025905     0.001200     NO 
+ Maximum Displacement     0.044699     0.001800     NO 
+ RMS     Displacement     0.020290     0.001200     NO 
+ Maximum Displacement     0.018702     0.001800     NO 
+ RMS     Displacement     0.007275     0.001200     NO 
+ Maximum Displacement     0.003641     0.001800     NO 
+ RMS     Displacement     0.001954     0.001200     NO 
+ Maximum Displacement     0.002938     0.001800     NO 
+ RMS     Displacement     0.001343     0.001200     NO 
+ Maximum Displacement     0.001257     0.001800     YES
+ RMS     Displacement     0.000507     0.001200     YES
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep -E "RMS   |Maximum " dimer.log
+ Cartesian Forces:  Max     0.052528044 RMS     0.016650655
+ Internal  Forces:  Max     0.057661487 RMS     0.022508193
+ Maximum step size (   0.300) exceeded in Quadratic search.
+ Maximum Force            0.057661     0.000450     NO 
+ RMS     Force            0.022508     0.000300     NO 
+ Maximum Displacement     0.218107     0.001800     NO 
+ RMS     Displacement     0.108003     0.001200     NO 
+ Cartesian Forces:  Max     0.021873468 RMS     0.007419602
+ Internal  Forces:  Max     0.023218374 RMS     0.006661627
+ Maximum Force            0.023218     0.000450     NO 
+ RMS     Force            0.006662     0.000300     NO 
+ Maximum Displacement     0.328915     0.001800     NO 
+ RMS     Displacement     0.156239     0.001200     NO 
+ Cartesian Forces:  Max     0.018473188 RMS     0.005726133
+ Internal  Forces:  Max     0.010336832 RMS     0.003856936
+ Maximum Force            0.010337     0.000450     NO 
+ RMS     Force            0.003857     0.000300     NO 
+ Maximum Displacement     0.156513     0.001800     NO 
+ RMS     Displacement     0.095361     0.001200     NO 
+ Cartesian Forces:  Max     0.009168159 RMS     0.003542658
+ Internal  Forces:  Max     0.006428579 RMS     0.002401234
+ Maximum Force            0.006429     0.000450     NO 
+ RMS     Force            0.002401     0.000300     NO 
+ Maximum Displacement     0.178826     0.001800     NO 
+ RMS     Displacement     0.075157     0.001200     NO 
+ Cartesian Forces:  Max     0.004682039 RMS     0.001720967
+ Internal  Forces:  Max     0.002624125 RMS     0.001338755
+ Maximum Force            0.002624     0.000450     NO 
+ RMS     Force            0.001339     0.000300     NO 
+ Maximum Displacement     0.269534     0.001800     NO 
+ RMS     Displacement     0.115583     0.001200     NO 
+ Cartesian Forces:  Max     0.004156726 RMS     0.001705614
+ Internal  Forces:  Max     0.003479694 RMS     0.001534893
+ Maximum Force            0.003480     0.000450     NO 
+ RMS     Force            0.001535     0.000300     NO 
+ Maximum Displacement     0.237828     0.001800     NO 
+ RMS     Displacement     0.112887     0.001200     NO 
+ Cartesian Forces:  Max     0.005840255 RMS     0.002205550
+ Internal  Forces:  Max     0.003740333 RMS     0.001958187
+ Maximum Force            0.003740     0.000450     NO 
+ RMS     Force            0.001958     0.000300     NO 
+ Maximum Displacement     0.288583     0.001800     NO 
+ RMS     Displacement     0.144836     0.001200     NO 
+ Cartesian Forces:  Max     0.005150980 RMS     0.002393562
+ Internal  Forces:  Max     0.005036113 RMS     0.002355206
+ Maximum Force            0.005036     0.000450     NO 
+ RMS     Force            0.002355     0.000300     NO 
+ Maximum Displacement     0.274271     0.001800     NO 
+ RMS     Displacement     0.156026     0.001200     NO 
+ Cartesian Forces:  Max     0.004050320 RMS     0.002159038
+ Internal  Forces:  Max     0.005406134 RMS     0.002165707
+ Maximum Force            0.005406     0.000450     NO 
+ RMS     Force            0.002166     0.000300     NO 
+ Maximum Displacement     0.261413     0.001800     NO 
+ RMS     Displacement     0.128936     0.001200     NO 
+ Cartesian Forces:  Max     0.004020124 RMS     0.001402666
+ Internal  Forces:  Max     0.002916874 RMS     0.001182496
+ Maximum Force            0.002917     0.000450     NO 
+ RMS     Force            0.001182     0.000300     NO 
+ Maximum Displacement     0.055137     0.001800     NO 
+ RMS     Displacement     0.023976     0.001200     NO 
+ Cartesian Forces:  Max     0.001050067 RMS     0.000506503
+ Internal  Forces:  Max     0.001047974 RMS     0.000553119
+ Maximum Force            0.001048     0.000450     NO 
+ RMS     Force            0.000553     0.000300     NO 
+ Maximum Displacement     0.032357     0.001800     NO 
+ RMS     Displacement     0.014542     0.001200     NO 
+ Cartesian Forces:  Max     0.000822505 RMS     0.000350171
+ Internal  Forces:  Max     0.001021199 RMS     0.000370430
+ Maximum Force            0.001021     0.000450     NO 
+ RMS     Force            0.000370     0.000300     NO 
+ Maximum Displacement     0.071028     0.001800     NO 
+ RMS     Displacement     0.025905     0.001200     NO 
+ Cartesian Forces:  Max     0.001594565 RMS     0.000587390
+ Internal  Forces:  Max     0.001209793 RMS     0.000497861
+ Maximum Force            0.001210     0.000450     NO 
+ RMS     Force            0.000498     0.000300     NO 
+ Maximum Displacement     0.044699     0.001800     NO 
+ RMS     Displacement     0.020290     0.001200     NO 
+ Cartesian Forces:  Max     0.000960632 RMS     0.000298950
+ Internal  Forces:  Max     0.000533418 RMS     0.000221928
+ Maximum Force            0.000533     0.000450     NO 
+ RMS     Force            0.000222     0.000300     YES
+ Maximum Displacement     0.018702     0.001800     NO 
+ RMS     Displacement     0.007275     0.001200     NO 
+ Cartesian Forces:  Max     0.000246178 RMS     0.000084919
+ Internal  Forces:  Max     0.000122775 RMS     0.000066226
+ Maximum Force            0.000123     0.000450     YES
+ RMS     Force            0.000066     0.000300     YES
+ Maximum Displacement     0.003641     0.001800     NO 
+ RMS     Displacement     0.001954     0.001200     NO 
+ Cartesian Forces:  Max     0.000050666 RMS     0.000022651
+ Internal  Forces:  Max     0.000041756 RMS     0.000016543
+ Maximum Force            0.000042     0.000450     YES
+ RMS     Force            0.000017     0.000300     YES
+ Maximum Displacement     0.002938     0.001800     NO 
+ RMS     Displacement     0.001343     0.001200     NO 
+ Cartesian Forces:  Max     0.000052548 RMS     0.000019139
+ Internal  Forces:  Max     0.000032921 RMS     0.000013794
+ Maximum Force            0.000033     0.000450     YES
+ RMS     Force            0.000014     0.000300     YES
+ Maximum Displacement     0.001257     0.001800     YES
+ RMS     Displacement     0.000507     0.001200     YES
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep -A 4 "Threshold" dimer.log
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.057661     0.000450     NO 
+ RMS     Force            0.022508     0.000300     NO 
+ Maximum Displacement     0.218107     0.001800     NO 
+ RMS     Displacement     0.108003     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.023218     0.000450     NO 
+ RMS     Force            0.006662     0.000300     NO 
+ Maximum Displacement     0.328915     0.001800     NO 
+ RMS     Displacement     0.156239     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.010337     0.000450     NO 
+ RMS     Force            0.003857     0.000300     NO 
+ Maximum Displacement     0.156513     0.001800     NO 
+ RMS     Displacement     0.095361     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.006429     0.000450     NO 
+ RMS     Force            0.002401     0.000300     NO 
+ Maximum Displacement     0.178826     0.001800     NO 
+ RMS     Displacement     0.075157     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.002624     0.000450     NO 
+ RMS     Force            0.001339     0.000300     NO 
+ Maximum Displacement     0.269534     0.001800     NO 
+ RMS     Displacement     0.115583     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.003480     0.000450     NO 
+ RMS     Force            0.001535     0.000300     NO 
+ Maximum Displacement     0.237828     0.001800     NO 
+ RMS     Displacement     0.112887     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.003740     0.000450     NO 
+ RMS     Force            0.001958     0.000300     NO 
+ Maximum Displacement     0.288583     0.001800     NO 
+ RMS     Displacement     0.144836     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.005036     0.000450     NO 
+ RMS     Force            0.002355     0.000300     NO 
+ Maximum Displacement     0.274271     0.001800     NO 
+ RMS     Displacement     0.156026     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.005406     0.000450     NO 
+ RMS     Force            0.002166     0.000300     NO 
+ Maximum Displacement     0.261413     0.001800     NO 
+ RMS     Displacement     0.128936     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.002917     0.000450     NO 
+ RMS     Force            0.001182     0.000300     NO 
+ Maximum Displacement     0.055137     0.001800     NO 
+ RMS     Displacement     0.023976     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.001048     0.000450     NO 
+ RMS     Force            0.000553     0.000300     NO 
+ Maximum Displacement     0.032357     0.001800     NO 
+ RMS     Displacement     0.014542     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.001021     0.000450     NO 
+ RMS     Force            0.000370     0.000300     NO 
+ Maximum Displacement     0.071028     0.001800     NO 
+ RMS     Displacement     0.025905     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.001210     0.000450     NO 
+ RMS     Force            0.000498     0.000300     NO 
+ Maximum Displacement     0.044699     0.001800     NO 
+ RMS     Displacement     0.020290     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.000533     0.000450     NO 
+ RMS     Force            0.000222     0.000300     YES
+ Maximum Displacement     0.018702     0.001800     NO 
+ RMS     Displacement     0.007275     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.000123     0.000450     YES
+ RMS     Force            0.000066     0.000300     YES
+ Maximum Displacement     0.003641     0.001800     NO 
+ RMS     Displacement     0.001954     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.000042     0.000450     YES
+ RMS     Force            0.000017     0.000300     YES
+ Maximum Displacement     0.002938     0.001800     NO 
+ RMS     Displacement     0.001343     0.001200     NO 
+--
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.000033     0.000450     YES
+ RMS     Force            0.000014     0.000300     YES
+ Maximum Displacement     0.001257     0.001800     YES
+ RMS     Displacement     0.000507     0.001200     YES
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep -i  warning freq.log
+ Warning -- This program may not be used in any manner that
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep o cp2k.xyz | wc
+      0       0       0
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep -E "O|H" cp2k.xyz | wc -l
+1536
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ wc -l cp2k.xyz
+1538 cp2k.xyz
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep TIME cp2k.out
+ TIME [fs]                    =                                         0.500000
+ CPU TIME [s]                 =                      290.20               290.20
+ TIME [fs]                    =                                         1.000000
+ CPU TIME [s]                 =                       70.63               180.42
+ TIME [fs]                    =                                         1.500000
+ CPU TIME [s]                 =                      114.28               158.37
+ TIME [fs]                    =                                         2.000000
+ CPU TIME [s]                 =                       71.75               136.72
+ TIME [fs]                    =                                         2.500000
+ CPU TIME [s]                 =                       38.50               117.07
+ TIME [fs]                    =                                         3.000000
+ CPU TIME [s]                 =                       36.26               103.61
+ TIME [fs]                    =                                         3.500000
+ CPU TIME [s]                 =                       35.33                93.85
+ TIME [fs]                    =                                         4.000000
+ CPU TIME [s]                 =                       32.24                86.15
+ TIME [fs]                    =                                         4.500000
+ CPU TIME [s]                 =                       35.31                80.50
+ TIME [fs]                    =                                         5.000000
+ CPU TIME [s]                 =                       35.20                75.97
+ ROUTINE             CALLS  TOT TIME [s]  AVE VOLUME [Bytes]  PERFORMANCE [MB/s]
+ SUBROUTINE                       CALLS  ASD         SELF TIME        TOTAL TIME
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep "CPU TIME" cp2k.out
+ CPU TIME [s]                 =                      290.20               290.20
+ CPU TIME [s]                 =                       70.63               180.42
+ CPU TIME [s]                 =                      114.28               158.37
+ CPU TIME [s]                 =                       71.75               136.72
+ CPU TIME [s]                 =                       38.50               117.07
+ CPU TIME [s]                 =                       36.26               103.61
+ CPU TIME [s]                 =                       35.33                93.85
+ CPU TIME [s]                 =                       32.24                86.15
+ CPU TIME [s]                 =                       35.31                80.50
+ CPU TIME [s]                 =                       35.20                75.97
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep "CPU TIME" cp2k.out > times
+ CPU TIME [s]                 =                      290.20               290.20
+ CPU TIME [s]                 =                       70.63               180.42
+ CPU TIME [s]                 =                      114.28               158.37
+ CPU TIME [s]                 =                       71.75               136.72
+ CPU TIME [s]                 =                       38.50               117.07
+ CPU TIME [s]                 =                       36.26               103.61
+ CPU TIME [s]                 =                       35.33                93.85
+ CPU TIME [s]                 =                       32.24                86.15
+ CPU TIME [s]                 =                       35.31                80.50
+ CPU TIME [s]                 =                       35.20                75.97
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ more times
+ CPU TIME [s]                 =                      290.20               290.20
+ CPU TIME [s]                 =                       70.63               180.42
+ CPU TIME [s]                 =                      114.28               158.37
+ CPU TIME [s]                 =                       71.75               136.72
+ CPU TIME [s]                 =                       38.50               117.07
+ CPU TIME [s]                 =                       36.26               103.61
+ CPU TIME [s]                 =                       35.33                93.85
+ CPU TIME [s]                 =                       32.24                86.15
+ CPU TIME [s]                 =                       35.31                80.50
+ CPU TIME [s]                 =                       35.20                75.97
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ gnuplot
+plot 'times' using 0:5 with points
+plot 'times' using 0:5 with lines
+
+
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep TEMPERATURE cp2k.out
+ INITIAL TEMPERATURE[K]                =                                 300.000
+ TEMPERATURE [K]              =                     305.326              305.326
+ TEMPERATURE [K]              =                     323.124              314.225
+ TEMPERATURE [K]              =                     347.442              325.297
+ TEMPERATURE [K]              =                     368.720              336.153
+ TEMPERATURE [K]              =                     377.405              344.403
+ TEMPERATURE [K]              =                     368.690              348.451
+ TEMPERATURE [K]              =                     344.999              347.958
+ TEMPERATURE [K]              =                     314.601              343.788
+ TEMPERATURE [K]              =                     287.757              337.563
+ TEMPERATURE [K]              =                     272.845              331.091
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ grep TEMPERATURE cp2k.out | awk '{a+=$4;print $4,NR,a/NR}'
+300.000 1 300
+305.326 2 302,5
+323.124 3 309,333
+347.442 4 318,75
+368.720 5 328,6
+377.405 6 336,667
+368.690 7 341,143
+344.999 8 341,5
+314.601 9 338,444
+287.757 10 333,3
+272.845 11 327,727
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ awk '/TEMPERATURE/{a+=$4;n++;print $4,n,a/n}' cp2k.out
+300.000 1 300
+305.326 2 302,5
+323.124 3 309,333
+347.442 4 318,75
+368.720 5 328,6
+377.405 6 336,667
+368.690 7 341,143
+344.999 8 341,5
+314.601 9 338,444
+287.757 10 333,3
+272.845 11 327,727
+acepoi@Ubuntu22:~/Downloads/linux-exercises$ cat cp2k.xyz | sort -n -k 2 | head
+  H        -0.5305550000        3.6122210000       14.7086020000
+  H        -0.5099810000        4.6930730000       22.7955390000
+  H        -0.3297560000        8.5010670000        4.8782520000
+  H        -0.3241760000       15.1038460000        1.5773540000
+  H        -0.0748410000        0.8127580000        0.0296070000
+  H        -0.0458740000       21.3572900000        6.8759690000
+    1536
+ i =        0, time =        0.000, E =     -8807.9524412500
+  H         0.0614840000        4.2880610000       11.2611580000
+  H         0.1497510000        6.9271230000       21.0598550000
