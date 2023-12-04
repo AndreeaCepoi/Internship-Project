@@ -4,6 +4,16 @@ acepoi@Ubuntu22:~$ cat hello.txt
 Hello World!
 acepoi@Ubuntu22:~$ grep "Hello" hello.txt
 Hello World!
+acepoi@Ubuntu22:~$ grep "World" hello.txt
+Hello World!
 acepoi@Ubuntu22:~$ sed -i 's/Hello/Hi/' hello.txt
 acepoi@Ubuntu22:~$ cat hello.txt
 Hi World!
+acepoi@Ubuntu22:~$ awk '{print $1}' hello.txt
+Hi
+acepoi@Ubuntu22:~$ awk '{print $2}' hello.txt
+World!
+acepoi@Ubuntu22:~$ awk '{print}' hello.txt
+Hi World!
+acepoi@Ubuntu22:~$ awk '{gsub(/World/, "People"); print}' hello.txt
+Hi People!
