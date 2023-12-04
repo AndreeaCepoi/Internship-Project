@@ -23,10 +23,25 @@ rm -rf
 mkdir - Creează un director nou 
 
 nano - Editează un fișier cu un editor de text nano
+	Ctrl+x pentru a iesi. Dacă ai făcut modificări, vei fi întrebat dacă vrei să salvezi. Apasă Y pentru a confirma și Enter. Dacă nu vrei să salvezi, apasă N pentru "No".
 
 man - Afișează un manual de comandă 
 
 chmod - Modifică permisiunile de citire, scriere și execuție ale unui fișier 
+	- r - read
+	- w - write
+	- x - execute
+	- u - user
+	- g - group
+	- o - others
+	- 7 - read, write, și execute (4+2+1)
+	- 5 - read și execute (4+1)
+	- 6 - read și write (4+2)
+	- 4 - read
+	- 2 - write
+	- 1 - execute
+	- '+' - adauga perminiune
+	- '-' - elimina permisiune
 
 chown - Schimbă proprietatea unui fișier, director
 
@@ -69,3 +84,7 @@ sudo adduser – Adauga un user nou
 groups – Afiseaza grupurile din care faci parte
 
 sudo apt install – Instaleaza un pachet specific pe sistem 
+
+sed - Găsește, înlocuiește sau șterge modele dintr-un fișier fără a utiliza un editor de text
+
+awk - Găsește și manipulează modele într-un fișier. Scanează modele de expresii regulate dintr-un fișier pentru a prelua sau a manipula datele care se potrivesc
