@@ -794,3 +794,5 @@ echo $@
 tput sgr0 }
 acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./center.sh Hello
 							Hello
+							
+							
