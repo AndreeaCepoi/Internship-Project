@@ -15,6 +15,7 @@ echo Occurrences of $search_string in $filename : $occurrences
 
 
 
-
 #acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./counter.sh StrictHostKeyChecking bashcrc
 #Occurrences of StrictHostKeyChecking in bashcrc : 4
+
+
