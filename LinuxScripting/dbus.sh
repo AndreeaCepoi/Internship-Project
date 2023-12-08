@@ -6,10 +6,10 @@ check_charging_status() {
 	while read -r line
 	do
 		status=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "state:" | awk '{print $2}')
-		if [ "$status" == "charging" ];
+		if [ "$status" == "charging" ]
 		then
 			echo "This machine is currently plugged in"
-		elif [ "$status" == "discharging" ];
+		elif [ "$status" == "discharging" ]
 		then
 			echo "This machine is currently using the battery"
 		fi
