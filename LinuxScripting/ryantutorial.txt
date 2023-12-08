@@ -1,0 +1,796 @@
+-------- What is a Bash Script? ------
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./myscript.sh
+bash: ./myscript.sh: Permission denied
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ls -l myscript.sh
+-rw-rw-r-- 1 acepoi acepoi 0 dec  5 16:28 myscript.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod 755 myscript.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ls -l myscript.sh
+-rwxr-xr-x 1 acepoi acepoi 0 dec  5 16:28 myscript.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./myscript.sh
+Hello World!
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ bash myscript.sh
+Hello World!
+-> myscript.sh
+{ #!/bin/bash
+echo Hello World! }
+
+-------Variables!---------
+
+env
+$0 - The name of the Bash script.
+$1 - $9 - The first 9 arguments to the Bash script. (As mentioned above.)
+$# - How many arguments were passed to the Bash script.
+$@ - All the arguments supplied to the Bash script.
+$? - The exit status of the most recently run process.
+$$ - The process ID of the current script.
+$USER - The username of the user running the script.
+$HOSTNAME - The hostname of the machine the script is running on.
+$SECONDS - The number of seconds since the script was started.
+$RANDOM - Returns a different random number each time is it referred to.
+$LINENO - Returns the current line number in the Bash script.
+----------------------------
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch simplevariables.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x simplevariables.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano simplevariables.sh
+{ #!/bin/bash 
+myVar=Hello
+anotherVar=Andreea
+echo $myVar $anotherVar }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./simplevariables.sh
+Hello Andreea
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ myvar='Hello World'
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ echo $myvar
+Hello World
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ newvar="More $myvar"
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ echo $newvar
+More Hello World
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ newvar='More $myvar'
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ echo $newvar
+More $myvar
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ myvar=$( ls /etc | wc -l )
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ echo There are $myvar entries in the directory /etc
+There are 228 entries in the directory /etc
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch script1.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x script1.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano script1.sh
+{ #!/bin/bash
+var1=blah
+var2=foo
+echo $0 :: var1 : $var1, var2 : $var2
+export var1
+./script2.sh
+echo $0 :: var1 : $var1, var2 : $var2 }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch script2.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x script2.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano script2.sh
+{ #!/bin/bash
+echo $0 :: var1 : $var1, var2 : $var2
+var1=flop
+var2=bleh }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./script1.sh
+./script1.sh :: var1 : blah, var2 : foo
+./script2.sh :: var1 : blah, var2 :
+./script1.sh :: var1 : blah, var2 : foo
+ --------------------
+$1, $2, ... - The first, second, etc command line arguments to the script.
+variable=value - To set a value for a variable. Remember, no spaces on either side of =
+Quotes " ' - Double will do variable substitution, single will not.
+variable=$( command ) - Save the output of a command into a variable
+export var1 - Make the variable var1 available to child processes.
+--------------------
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch random_word.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x random_word.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano random_word.sh
+{ #!/bin/bash
+word_file="/usr/share/dict/words"
+random_word=$(shuf -n 1 "$word_file") #shuf -n 1 -> amesteca liniile fișierului cu cuvinte și apoi extrage prima linie (care este un cuvânt random
+echo "Random Word: $random_word" }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh
+Random Word: footage's
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh
+Random Word: achieving
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh
+Random Word: conforming
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh
+Random Word: caesarean
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh
+Random Word: panhandler
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano random_word.sh
+{ #!/bin/bash
+word_file="/usr/share/dict/words"
+random_word=$(grep -E "^[a-zA-Z]{$1}$" "$word_file" | shuf -n 1) # cu grep cauta in 'word_file' liniile care au un caracter  care trebuie sa fie o litera (mare sau mica) de lungimea '$1'
+echo "Random Word: $random_word"}
+cepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh 3
+Random Word: wit
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh 4
+Random Word: Tass
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh 5
+Random Word: clxvi
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh 6
+Random Word: casual
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh 7
+Random Word: locusts
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh 8
+Random Word: Pleiades
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh 9
+Random Word: protozoon
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random_word.sh 12
+Random Word: currycombing
+
+---------------------------User Input!-----------------------------
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch introduction.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x introduction.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano introduction.sh
+{ #!/bin/bash
+echo Hello, who am I talking to?
+read varname
+echo It\'s nice to meet you $varname }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./introduction.sh
+Hello, who am I talking to?
+Andreea
+It's nice to meet you Andreea
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch login.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x login.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano login.sh
+{ #!/bin/bash
+read -p 'Username: ' uservar
+read -sp 'Password: ' passvar
+echo
+echo Thack you $uservar }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./login.sh
+Username: acepoi
+Password: 
+Thack you acepoi
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch cars.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x cars.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano cars.sh
+{ #!/bin/bash
+echo What cars do you like?
+read car1 car2 car3
+echo Your first car: $car1
+echo Your second car $car2
+echo Your third car: $car3 }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./cars.sh
+What cars do you like?
+bmw audi mercedes
+Your first car: bmw
+Your second car audi
+Your third car: mercedes
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch user_info.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x user_info.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano user_info.sh
+{ #!/bin/bash
+read -p 'Enter your name: ' user_name
+read -p 'Enter your age: ' user_age
+read -p 'Enter a color: ' user_color
+message="Hello, $user_name! You are $user_age years old and you like color $user_color"
+echo "$message" }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./user_info.sh
+Enter your name: Andreea
+Enter your age: 24
+Enter a color: red
+Hello, Andreea! You are 24 years old and you like color red
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch more_user_info.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x more_user_info.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano more_user_info.sh
+{ #!/bin/bash
+user_name=$1
+user_age=$2
+user_color=$3
+current_date=$(date +"%y-%m-%d")
+hostname=$(hostname)
+message="Hello, $user_name! You are $user_age years old and you like color $user_color"
+message+=" Today is $current_date, and you are running this script on the host $hostname"
+echo "$message" }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./more_user_info.sh Andreea 24 red
+Hello, Andreea! You are 24 years old and you like color red Today is 23-12-05, and you are running this script on the host Ubuntu22
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch summary.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x summary.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano summary.sh
+{ #!/bin/bash
+echo Here is a summary
+echo ------------------
+echo
+cat /dev/stdin | head -n 3 }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ cat ryantutorial.txt | ./summary.sh
+Here is a summary
+------------------
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./myscript.sh
+bash: ./myscript.sh: Permission denied
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ls -l myscript.sh
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ls -l
+total 56
+-rwxrwxr-x 1 acepoi acepoi  144 dec  5 18:27 cars.sh
+-rwxrwxr-x 1 acepoi acepoi   98 dec  5 18:19 introduction.sh
+-rwxrwxr-x 1 acepoi acepoi  101 dec  5 18:24 login.sh
+-rwxrwxr-x 1 acepoi acepoi   75 dec  5 19:29 ls_filter.sh
+-rwxrwxr-x 1 acepoi acepoi  303 dec  5 19:06 more_user_info.sh
+-rwxr-xr-x 1 acepoi acepoi   31 dec  5 16:30 myscript.sh
+-rwxrwxr-x 1 acepoi acepoi  423 dec  5 18:06 random_word.sh
+-rw-rw-r-- 1 acepoi acepoi 7488 dec  5 19:25 ryantutorial.txt
+-rwxrwxr-x 1 acepoi acepoi  136 dec  5 16:54 script1.sh
+-rwxrwxr-x 1 acepoi acepoi   72 dec  5 16:54 script2.sh
+-rwxrwxr-x 1 acepoi acepoi   70 dec  5 16:37 simplevariables.sh
+-rwxrwxr-x 1 acepoi acepoi   94 dec  5 19:22 summary.sh
+-rwxrwxr-x 1 acepoi acepoi  230 dec  5 18:49 user_info.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch ls_filter.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano ls_filter.sh
+{ #!/bin/bash
+ls -l | awk '{print "File: " $9, "Size: " $5, "Owner: " $3}' }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x ls_filter.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./ls_filter.sh
+File:  Size:  Owner: 
+File: cars.sh Size: 144 Owner: acepoi
+File: introduction.sh Size: 98 Owner: acepoi
+File: login.sh Size: 101 Owner: acepoi
+File: ls_filter.sh Size: 75 Owner: acepoi
+File: more_user_info.sh Size: 303 Owner: acepoi
+File: myscript.sh Size: 31 Owner: acepoi
+File: random_word.sh Size: 423 Owner: acepoi
+File: ryantutorial.txt Size: 7488 Owner: acepoi
+File: script1.sh Size: 136 Owner: acepoi
+File: script2.sh Size: 72 Owner: acepoi
+File: simplevariables.sh Size: 70 Owner: acepoi
+File: summary.sh Size: 94 Owner: acepoi
+File: user_info.sh Size: 230 Owner: acepoi
+
+---------------------------Arithmetic!------------------------
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch let_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano let_exemple.sh
+{ #!/bin/bash
+let a=5+4
+echo $a
+let "a = 5 + 4"
+echo $a
+let a++
+echo $a
+let "a = 4 * 5"
+echo $a
+let "a=$1 + 30"
+echo $a }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x let_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./let_exemple.sh
+9
+9
+10
+20
+30
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./let_exemple.sh 5
+9
+9
+10
+20
+35
+-----------------
++, -, \*, / 	addition, subtraction, multiply, divide
+var++ 	Increase the variable var by 1
+var-- 	Decrease the variable var by 1
+% 	Modulus (Return the remainder after division)
+-----------------
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch expr_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano expr_exemple.sh
+{ #!/bin/bash
+expr 5 + 4
+expr  "5 + 4"
+expr 5+4
+expr 5 \* $1
+expr 11 % 2
+a=$( expr 10 - 3 )
+echo $a
+ }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x expr_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./expr_exemple.sh 3
+9
+5 + 4
+5+4
+15
+1
+7
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch expansion_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano expansion_exemple.sh
+{ #!/bin/bash
+a=$(( 4 + 5 ))
+echo $a
+a=$((3+5))
+echo $a
+b=$(( a + 3 ))
+echo $b
+b=$(( $a + 4 ))
+echo $b
+(( b++ ))
+echo $b
+(( b +=3 ))
+echo $b
+a=$(( 4 * 5 )) }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x expansion_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./expansion_exemple.sh
+9
+8
+11
+12
+13
+16
+20
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch length_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano length_exemple.sh
+{ #!/bin/bash
+a='Hello World'
+echo ${#a}
+b=4953
+echo ${#b} }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x length_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./length_exemple.sh
+11
+4
+-------------------------------------
+let expression - Make a variable equal to an expression.
+expr expression - print out the result of the expression.
+$(( expression )) - Return the result of the expression.
+${#var} - Return the length of the variable var.
+--------------------------------------
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch mutiply_script.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano multiply_script.sh
+{ #!/bin/bash
+let "a = $1 * $2"
+echo "Method1 (let): $a"
+b=$(expr $1 \* $2)
+echo "Method2 (expr): $b"
+c=$(( $1 * $2 ))
+echo "Method3 (\$(( ))): $c"
+d=$(($1*$2))
+echo "Method4 (\${#var}): ${#d}" }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x multiply_script.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./multiply_script.sh 2 3
+Method1 (let): 6
+Method2 (expr): 6
+Method3 ($(( ))): 6
+Method4 (${#var}): 1
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./multiply_script.sh 16 38
+Method1 (let): 608
+Method2 (expr): 608
+Method3 ($(( ))): 608
+Method4 (${#var}): 3
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch tomorrow_date.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x tomorrow_date.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano tomorrow_date.sh
+{ #!/bin/bash
+tomorrow_date=$(date -d "+1 day" +"%Y-%m-%d")
+echo "Tomorrow date: $tomorrow_date" }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./tomorrow_date.sh
+Tomorrow date: 2023-12-07
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch random.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x random.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano random.sh
+{ #!/bin/bash
+random_nr=$((RANDOM % 101))
+echo "Random Nr between 0  and 100: $random_nr" }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh
+Random Nr between 0  and 100: 22
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh
+Random Nr between 0  and 100: 41
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh
+Random Nr between 0  and 100: 3
+cepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh
+Random Nr between 0  and 100: 17
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh
+Random Nr between 0  and 100: 85
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano random.sh
+{ #!/bin/bash
+lower_limit=$1
+upper_limit=$2
+random_nr=$((lower_limit + RANDOM % (upper_limit - lower_limit +1)))
+echo "Random Nr between $lower_limit and $upper_limit: $random_nr" }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh 10 45
+Random Nr between 10 and 45: 39
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh 10 45
+Random Nr between 10 and 45: 31
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh 10 45
+Random Nr between 10 and 45: 28
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./random.sh 10 45
+Random Nr between 10 and 45: 19
+
+-------------------------------If Statements!-------------------------
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch if_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano if_exemple.sh
+{ #!/bin/bash
+if [ $1 -gt 100 ]
+then
+        echo Hey that\'s a larger number.
+        pwd
+fi
+date }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x if_exemple.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./if_exemple.sh 15
+miercuri 6 decembrie 2023, 10:44:51 +0200
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./if_exemple.sh 150
+Hey that's a larger number.
+/home/acepoi/Internship-Project/LinuxScripting
+miercuri 6 decembrie 2023, 10:45:15 +0200
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch nested_if.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano nested_if.sh
+{ #!/bin/bash
+if [ $1 -gt 100 ]
+then
+        echo Hey that\'s a larger number
+
+        if (( $1 % 2 == 0 ))
+        then
+                echo And is also an even number
+        fi
+fi }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./nested_if.sh 129
+Hey that's a larger number
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./nested_if.sh 286
+Hey that's a larger number
+And is also an even number
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch elif.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano elif.sh
+{ #!/bin/bash
+if [ $1 -ge 18 ]
+then
+        echo You may go to the party
+elif [ $2 == 'yes' ]
+then
+        echo You may go to the party  but be back before midnight
+else
+        echo You may not go to the party
+fi }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x elif.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./elif.sh 17 yes
+You may go to the party but be back before midnight
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./elif.sh 19    
+You may go to the party
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./elif.sh 12 no
+You may not go to the party
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch case.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano case.sh
+{ #!/bin/bash
+case $1 in
+        start)
+                echo starting
+                ;;
+        stop)
+                echo stoping
+                ;;
+        restart)
+                echo restarting
+                ;;
+        *)
+                echo don\'t know
+                ;;
+esac }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x case.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./case.sh start
+starting
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./case.sh restart
+restarting
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./case.sh bdks   
+don't know
+-----------------------------------
+if - Perform a set of commands if a test is true.
+else - If the test is not true then perform a different set of commands.
+elif - If the previous test returned false then try this one.
+&& - Perform the and operation.
+|| - Perform the or operation.
+case - Choose a set of commands to execute depending on a string matching a particular pattern.
+------------------------------------
+cepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch larger_nr.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano larger_nr.sh
+{ #!/bin/bash
+if [ $1 -gt $2 ]
+then
+        echo The larger number is $1
+elif [ $1 -lt $2 ]
+then
+        echo The larger number is $2
+else
+        echo The numbers are equal
+fi }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x larger_nr.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./larger_nr.sh 9 9
+The numbers are equal
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./larger_nr.sh 9 5
+The larger number is 9
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./larger_nr.sh 3 8
+The larger number is 8
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch file.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano file.sh
+{ #!/bin/bash
+if [ ! -e $1 ]; then
+    echo File does not exist: $1
+    exit 1
+fi
+if [ -x $1 ]; then
+    echo The file $1 is executable
+else
+    echo The file $1 is not executable
+fi
+if [ -w $1 ]; then
+    echo The file $1 is writable
+else
+    echo The file $1 is not writable
+fi }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x file.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./file.sh filename
+File does not exist: filename
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./file.sh random.sh
+The file random.sh is executable
+The file random.sh is writable
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./file.sh ryantutorial.txt
+The file ryantutorial.txt is not executable
+The file ryantutorial.txt is writable
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch day.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano day.sh
+{#!/bin/bash
+day=$(date +"%u")
+case $day in
+    1)
+        echo "Happy Monday!"
+        ;;
+    2)
+        echo "Happy Tuesday!"
+        ;;
+    3)
+        echo "Happy Wednesday!"
+        ;;
+    4)
+        echo "Happy Thursday!"
+        ;;
+    5)
+        echo "TGIF! Happy Friday!"
+        ;;
+    6)
+        echo "Happy Saturday!"
+        ;;
+    7)
+        echo "Happy Sunday!"
+        ;;
+esac }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x day.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./day.sh
+Happy Wednesday!
+
+-------------------------------Loops!--------------------------------
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch while.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano while.sh
+{ #!/bin/bash
+counter=1
+while [ $counter -le 10 ]
+do
+        echo $counter
+        ((counter++))
+done
+echo All done }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x while.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./while.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+All done
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch until.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano until.sh
+{ #!/bin/bash
+counter=1
+until [ $counter -gt 10 ]
+do
+        echo $counter
+        ((counter++))
+done
+echo All done}
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x until.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./until.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+All done
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch for.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano for.sh
+{ #!/bin/bash
+names='Stan Kyle Ana'
+
+for name in $names
+do
+	echo $name
+done
+echo all done }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x for.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./for.sh
+Stan
+Kyle
+Ana
+all done
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch for1.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano for1.sh
+{ #!/bin/bash
+for value in {1..5}
+do
+	echo $value
+done
+echo all done }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x for1.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./for1.sh
+1
+2
+3
+4
+5
+all done
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch for2.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano for2.sh
+{ #!/bin/bash
+for value in {10..0..2}
+do
+	echo $value
+done
+echo all done }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x for2.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./for2.sh
+10
+8
+6
+4
+2
+0
+all done
+--------------------------------
+while do done - Perform a set of commands while a test is true.
+until do done - Perform a set of commands until a test is true.
+for do done - Perform a set of commands for each item in a list.
+break - Exit the currently running loop.
+continue - Stop this iteration of the loop and begin the next iteration.
+select do done - Display a simple menu system for selecting items from a list.
+----------------------------------
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch even_odd.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano even_odd.sh
+{ #!/bin/bash
+for value in {1..10}
+do
+        if (( $value % 2 == 0 ))
+        then
+                echo $value is even
+        else
+                echo $value is odd
+        fi
+done }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x even_odd.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./even_odd.sh
+1 is odd
+2 is even
+3 is odd
+4 is even
+5 is odd
+6 is even
+7 is odd
+8 is even
+9 is odd
+10 is even
+
+--------------------------Functions!---------------------------
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch function.sh  
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano function.sh 
+{ #!/bin/bash
+print_something () {
+	echo Hello I am a function
+}
+print_something
+print_something }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x function.sh 
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./function.sh
+Hello I am a function
+Hello I am a function
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch arguments.sh  
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano arguments.sh  
+{ #!/bin/bash
+print_something () {
+	echo Hello $1
+}
+print_something Mars
+print_something Jupiter }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x arguments.sh  
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./arguments.sh  
+Hello Mars
+Hello Jupiter
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch return.sh  
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano return.sh                            
+{ #!/bin/bash
+lines_in_file () {
+        cat $1 | wc -l
+}
+num_lines=$( lines_in_file $1 )
+echo The file $1 has $num_lines lines in it} 
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x return.sh  
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./return.sh ~/Internship-Project/LinuxBasic/Glosary.txt
+The file /home/acepoi/Internship-Project/LinuxBasic/Glosary.txt has 90 lines in it
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch local_var.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x local_var.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano local_var.sh
+{ #!/bin/bash
+var_change () {
+         local var1='local 1'
+        echo Inside function: var1 is $var1 : var2 is $var2
+        var1='changed again'
+        var2='2 changed again'
+}
+var1='global 1'
+var2='global 2'
+echo Before function call: var1 is $var1 : var2 is $var2
+var_change
+echo After function call: var1 is $var1 : var2 is $var2 }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./local_var.sh
+Before function call: var1 is global 1 : var2 is global 2
+Inside function: var1 is local 1 : var2 is global 2
+After function call: var1 is global 1 : var2 is 2 changed again
+-----------------------
+function <name> or <name> () - Create a function called name.
+return <value> - Exit the function with a return status of value.
+local <name>=<value> - Create a local variable within a function.
+command <command> - Run the command with that name as opposed to the function with the same name.
+-------------------------
+
+-----------------------User Interface!-------------------
+
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ touch center.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ chmod +x center.sh
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ nano center.sh
+{ #!/bin/bash
+cols=$( tput cols )
+rows=$( tput lines )
+message=$@
+input_length=${#message}
+half_input_length=$(( $input_length / 2 ))
+middle_row=$(( $rows / 2 ))
+middle_col=$(( ($cols / 2) - $half_input_length ))
+tput clear
+tput cup $middle_row $middle_col
+tput bold
+echo $@
+tput sgr0 }
+acepoi@Ubuntu22:~/Internship-Project/LinuxScripting$ ./center.sh Hello
+							Hello
