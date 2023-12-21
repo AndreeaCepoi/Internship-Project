@@ -1,6 +1,5 @@
 import os.path
 import subprocess
-
 def archive_data(source_dir, archive_name, destination_dir):
     try:
         if not os.path.exists(source_dir):
