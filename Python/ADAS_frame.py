@@ -17,15 +17,6 @@ def extract_sequences(data):
 
     return sequences
 
-def extract_value(payload, byte_position, bit_position, size):
-    byte_index = byte_position
-    bit_index = bit_position
-    mask = (1 << size) - 1
-    value = int.from_bytes(payload[byte_index:byte_index + (size + 7) // 8])
-    value >>= (bit_index - size + 1) % 8
-    value &= mask
-    return value
-
 def set_value(payload, byte_position, bit_position, size, new_value):
     byte_index = byte_position
     bit_index = bit_position
